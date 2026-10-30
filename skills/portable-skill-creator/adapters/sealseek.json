@@ -1,0 +1,39 @@
+{
+  "schema": "portable-skill-adapter",
+  "schema_version": "1.0.0",
+  "platform": "sealseek",
+  "mappings": [
+    {
+      "capability_id": "agent.skill.base-creator.resolve",
+      "status": "unresolved",
+      "implementation": null,
+      "features": [],
+      "permissions": [],
+      "normalization": "Inspect the target Skill catalog and bind the exact logical base creator during an authorized migration."
+    },
+    {
+      "capability_id": "workspace.files.read-write",
+      "status": "unresolved",
+      "implementation": null,
+      "features": [],
+      "permissions": [],
+      "normalization": "Inspect the target workspace file capabilities and safe patch mechanism during migration."
+    },
+    {
+      "capability_id": "command.execute",
+      "status": "unresolved",
+      "implementation": null,
+      "features": [],
+      "permissions": [],
+      "normalization": "Inspect the target command execution surface, sandbox, and result schema during migration."
+    },
+    {
+      "capability_id": "agent.isolated-run",
+      "status": "unresolved",
+      "implementation": null,
+      "features": [],
+      "permissions": [],
+      "normalization": "Inspect the target fresh-session mechanism only when clean regression is requested."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "portable-skill-adapter",
+  "schema_version": "1.0.0",
+  "platform": "codex",
+  "mappings": [
+    {
+      "capability_id": "agent.skill.base-creator.resolve",
+      "status": "tested",
+      "implementation": {"kind": "advertised-skill", "logical_name": "skill-creator"},
+      "features": ["exact-logical-name-resolution", "complete-instruction-read", "relative-resource-resolution"],
+      "permissions": [],
+      "normalization": "Return the advertised Skill identity, complete instructions, and resource root.",
+      "tested_date": "2026-08-29",
+      "evidence": ["The current advertised base creator was resolved and its complete SKILL.md was read before this update."]
+    },
+    {
+      "capability_id": "workspace.files.read-write",
+      "status": "tested",
+      "implementation": {"kind": "agent-native", "capability": "workspace file inspection and patch editing"},
+      "features": ["metadata-read", "content-read", "patch-write", "relative-resource-support"],
+      "permissions": ["target-path write access"],
+      "normalization": "Return path, changed state, and post-write metadata without exposing sensitive content.",
+      "tested_date": "2026-08-29",
+      "evidence": ["Existing target metadata was inspected, a recoverable backup was verified, and files were patched in place."]
+    },
+    {
+      "capability_id": "command.execute",
+      "status": "tested",
+      "implementation": {"kind": "agent-native", "capability": "local command execution"},
+      "features": ["working-directory", "exit-code", "stdout-stderr", "timeout"],
+      "permissions": ["command-specific host access"],
+      "normalization": "Return separate exit status and captured process output.",
+      "tested_date": "2026-08-29",
+      "evidence": ["The base and bundled validation commands were executed with explicit working directories and exit codes."]
+    },
+    {
+      "capability_id": "agent.isolated-run",
+      "status": "implemented",
+      "implementation": {"kind": "agent-native", "capability": "fresh sub-agent execution"},
+      "features": ["fresh-context", "natural-prompt-only", "bounded-wait", "result-retrieval"],
+      "permissions": ["explicit user request for clean regression"],
+      "normalization": "Return evaluator status, final result, and execution evidence; never reveal the hidden development baseline."
+    }
+  ]
+}

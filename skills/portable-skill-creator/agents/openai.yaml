@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portable Skill Creator"
+  short_description: "Design, port, and validate portable Agent Skills"
+  default_prompt: "Use $portable-skill-creator to create, update, review, test, or port an Agent Skill with I→S→O design, knowledge internalization, logical capability adapters, privacy checks, and user-gated clean regression."

@@ -1,0 +1,70 @@
+{
+  "schema": "portable-skill-adapter",
+  "schema_version": "1.0.0",
+  "platform": "generic",
+  "mappings": [
+    {
+      "capability_id": "agent.skill.base-creator.resolve",
+      "status": "implemented",
+      "implementation": {
+        "kind": "host-resolved",
+        "contract": "Resolve and load the current base Skill creator without copying it."
+      },
+      "features": [
+        "exact-logical-name-resolution",
+        "complete-instruction-read",
+        "relative-resource-resolution"
+      ],
+      "permissions": [
+        "caller authorization and host safety rules"
+      ],
+      "normalization": "Current Agent verifies actual features before execution and returns the declared normalized result."
+    },
+    {
+      "capability_id": "workspace.files.read-write",
+      "status": "implemented",
+      "implementation": {
+        "kind": "host-resolved",
+        "contract": "Inspect, create, and safely patch Skill files and bundled resources."
+      },
+      "features": [
+        "metadata-read",
+        "content-read",
+        "patch-write",
+        "relative-resource-support"
+      ],
+      "permissions": [
+        "caller authorization and host safety rules"
+      ],
+      "normalization": "Current Agent verifies actual features before execution and returns the declared normalized result."
+    },
+    {
+      "capability_id": "command.execute",
+      "status": "implemented",
+      "implementation": {
+        "kind": "host-resolved",
+        "contract": "Run base validators, bundled validators, tests, and deterministic probes."
+      },
+      "features": [
+        "working-directory",
+        "exit-code",
+        "stdout-stderr",
+        "timeout"
+      ],
+      "permissions": [
+        "caller authorization and host safety rules"
+      ],
+      "normalization": "Current Agent verifies actual features before execution and returns the declared normalized result."
+    },
+    {
+      "capability_id": "agent.isolated-run",
+      "status": "unresolved",
+      "implementation": null,
+      "features": [],
+      "permissions": [
+        "caller authorization and host safety rules"
+      ],
+      "normalization": "Current Agent verifies actual features before execution and returns the declared normalized result."
+    }
+  ]
+}

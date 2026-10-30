@@ -1,0 +1,47 @@
+{
+  "name": "@petercjl/portable-skill-creator",
+  "version": "0.1.0",
+  "description": "Portable Skill creation methods, routed knowledge and deterministic validators for capability-compatible Agents",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "portable-skill-creator": "bin/portable-skill-creator.mjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "scripts/check.mjs",
+    "scripts/sync-version.mjs",
+    "skills",
+    "capabilities.json",
+    "README.md",
+    "INSTALL.md",
+    "UPDATE.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "prepack": "node scripts/check.mjs",
+    "version": "node scripts/sync-version.mjs",
+    "postinstall": "node bin/portable-skill-creator.mjs install-notice"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petercjl/portable-skill-creator.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "agentPackage": {
+    "kind": "application-skill",
+    "skills": [
+      "portable-skill-creator"
+    ],
+    "canonicalSource": "skills/portable-skill-creator"
+  }
+}

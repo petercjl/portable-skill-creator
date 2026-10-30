@@ -1,0 +1,131 @@
+{
+  "schema": "portable-skill-capabilities",
+  "schema_version": "1.0.0",
+  "skill": "portable-skill-creator",
+  "target_platforms": [
+    "generic"
+  ],
+  "normalized_result_fields": [
+    "ok",
+    "artifacts",
+    "metadata",
+    "task_id",
+    "cost",
+    "warnings"
+  ],
+  "standard_errors": [
+    "CAPABILITY_UNAVAILABLE",
+    "FEATURE_UNSUPPORTED",
+    "AUTH_REQUIRED",
+    "PERMISSION_REQUIRED",
+    "PAID_ACTION_NOT_AUTHORIZED",
+    "PROVIDER_FAILURE",
+    "OUTPUT_CONTRACT_FAILED"
+  ],
+  "capabilities": [
+    {
+      "id": "agent.skill.base-creator.resolve",
+      "purpose": "Resolve and load the current base Skill creator without copying it.",
+      "required": true,
+      "required_features": [
+        "exact-logical-name-resolution",
+        "complete-instruction-read",
+        "relative-resource-resolution"
+      ],
+      "input_fields": [
+        "logical_skill_name"
+      ],
+      "output_fields": [
+        "resolved_skill",
+        "instructions",
+        "resource_root"
+      ],
+      "side_effects": {
+        "external_mutation": false,
+        "may_cost_money": false,
+        "authorization": "none"
+      }
+    },
+    {
+      "id": "workspace.files.read-write",
+      "purpose": "Inspect, create, and safely patch Skill files and bundled resources.",
+      "required": true,
+      "required_features": [
+        "metadata-read",
+        "content-read",
+        "patch-write",
+        "relative-resource-support"
+      ],
+      "input_fields": [
+        "path",
+        "operation"
+      ],
+      "output_fields": [
+        "path",
+        "changed",
+        "metadata"
+      ],
+      "side_effects": {
+        "external_mutation": true,
+        "may_cost_money": false,
+        "authorization": "user-scope-and-file-safety-rules"
+      }
+    },
+    {
+      "id": "command.execute",
+      "purpose": "Run base validators, bundled validators, tests, and deterministic probes.",
+      "required": true,
+      "required_features": [
+        "working-directory",
+        "exit-code",
+        "stdout-stderr",
+        "timeout"
+      ],
+      "input_fields": [
+        "command",
+        "working_directory",
+        "timeout"
+      ],
+      "output_fields": [
+        "exit_code",
+        "stdout",
+        "stderr"
+      ],
+      "side_effects": {
+        "external_mutation": true,
+        "may_cost_money": false,
+        "authorization": "command-specific"
+      }
+    },
+    {
+      "id": "agent.isolated-run",
+      "purpose": "Run one fresh evaluator only for an explicitly requested clean regression.",
+      "required": false,
+      "required_features": [
+        "fresh-context",
+        "natural-prompt-only",
+        "bounded-wait",
+        "result-retrieval"
+      ],
+      "input_fields": [
+        "natural_request",
+        "representative_inputs",
+        "safety_boundary"
+      ],
+      "output_fields": [
+        "status",
+        "result",
+        "execution_evidence"
+      ],
+      "side_effects": {
+        "external_mutation": true,
+        "may_cost_money": true,
+        "authorization": "explicit-clean-regression-request"
+      }
+    }
+  ],
+  "host_resolution": {
+    "fallback_adapter": "generic",
+    "named_adapters": "Use only when supported and verified by the current host; historical evidence is not an eligibility allowlist"
+  }
+}
