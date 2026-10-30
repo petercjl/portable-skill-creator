@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "summary": "Replace with the actual conclusion after inspecting outputs.",
+  "outputs": {
+    "analysis": "outputs/analysis-attempt-1.md"
+  },
+  "checks": {
+    "supported-by-evidence": true
+  }
+}

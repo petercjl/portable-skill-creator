@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "id": "analyze",
+      "title": "Analyze supplied evidence",
+      "dependsOn": [],
+      "inputs": [
+        "inputs/source.txt"
+      ],
+      "strategies": [
+        "references/analysis.md"
+      ],
+      "outputKeys": [
+        "analysis"
+      ],
+      "checks": [
+        "supported-by-evidence"
+      ]
+    },
+    {
+      "id": "report",
+      "title": "Present accepted findings",
+      "dependsOn": [
+        "analyze"
+      ],
+      "inputs": [],
+      "strategies": [],
+      "outputKeys": [
+        "report"
+      ],
+      "checks": [
+        "matches-accepted-analysis"
+      ]
+    }
+  ]
+}

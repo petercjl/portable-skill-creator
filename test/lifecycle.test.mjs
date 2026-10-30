@@ -55,7 +55,7 @@ test('lock prevents concurrent mutations; symlinks and unsafe receipts refused',
   assert.throws(()=>status(o),{code:'INVALID_RECEIPT'});
 });
 test('update check first/cached/expired/offline/disabled and malformed-cache preservation',async()=>{
-  let calls=0;const server=createServer((req,res)=>{calls++;res.setHeader('content-type','application/json');res.end(JSON.stringify({version:'0.1.9'}));});
+  let calls=0;const server=createServer((req,res)=>{calls++;res.setHeader('content-type','application/json');res.end(JSON.stringify({version:'99.0.0'}));});
   await new Promise(r=>server.listen(0,'127.0.0.1',r));
   const oldURL=process.env.PORTABLE_SKILL_REGISTRY_URL,oldDisable=process.env.PORTABLE_SKILL_UPDATE_CHECK;
   process.env.PORTABLE_SKILL_REGISTRY_URL='http://127.0.0.1:'+server.address().port;delete process.env.PORTABLE_SKILL_UPDATE_CHECK;

@@ -417,5 +417,22 @@
   "historicalUpdater": {
     "status": "first-release",
     "previousPublishedVersions": []
+  },
+  "generationAssets": {
+    "nodeLedger": {
+      "path": "skills/portable-skill-creator/assets/node-ledger",
+      "runtime": "Python >=3.10 standard library",
+      "scope": "target-owned file-based DAG runs",
+      "operations": [
+        "init",
+        "start",
+        "finish",
+        "inspect",
+        "plan",
+        "invalidate",
+        "revise"
+      ],
+      "schemaVersion": 1
+    }
   }
 }

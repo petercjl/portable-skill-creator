@@ -7,6 +7,8 @@ Choose the route matching the current request:
 - Review missing tool mappings: [queries/review-capability-gaps.md](queries/review-capability-gaps.md)
 - Run a clean regression: [queries/run-clean-regression.md](queries/run-clean-regression.md)
 
+- Design observable nodes and partial reruns: [queries/design-node-observability.md](queries/design-node-observability.md)
+
 Core topics:
 
 - [Skill worldview](topics/skill-worldview.md)

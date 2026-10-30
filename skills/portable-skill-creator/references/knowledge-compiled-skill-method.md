@@ -18,7 +18,7 @@ Use a direct Skill instead when the task is small, deterministic, stable, or ade
 
 The user does not need to request this architecture by name. At creation or substantial update time, detect whether the current user has an accessible Wiki or equivalent structured knowledge source. When one is available, use knowledge-compiled or hybrid design by default for every non-trivial Skill, even when the user only says “create a Skill.” When no Wiki is available and the user did not request knowledge-based creation, use the ordinary direct method by default.
 
-Treat a Skill as simple enough for direct internalization only when its method is short and stable, needs little input-dependent judgment, has no meaningful body of cases or trade-offs, is unlikely to evolve as knowledge changes, and is mostly mechanically verifiable. Do not use step count or file count as a proxy. If the classification is genuinely uncertain and an accessible Wiki exists, prefer hybrid.
+Treat a Skill as simple enough for direct internalization only when its method is short and stable, needs little input-dependent judgment, has no meaningful body of cases or trade-offs, is unlikely to evolve as knowledge changes, and is mostly mechanically verifiable. For business judgment, keep even a simple strategy in a compact reference page; this separation does not require a full mini Wiki. Do not use step count or file count as a proxy. If the classification is genuinely uncertain and an accessible Wiki exists, prefer hybrid.
 
 If the user explicitly requests creation from a Wiki but no source is accessible, do not pretend to have used it. Report the missing capability or source and request the minimum information needed to continue.
 

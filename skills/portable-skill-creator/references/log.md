@@ -1,5 +1,12 @@
 # Knowledge Layer Log
 
+## 2026-10-30
+
+- Added user-confirmed flow/strategy separation for business judgment, optional input forms and strategy seeds.
+- Added business-node execution ledgers, evidence snapshots, dependency-based freshness, historical traceability and partial reruns.
+- Added an independently usable file-ledger generation asset and routed its design and debugging methods.
+
+
 ## 2026-09-18
 
 - Added the business-flow-first design pass and per-step strategy pass for business Skills.

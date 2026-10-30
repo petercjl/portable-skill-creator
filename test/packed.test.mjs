@@ -12,12 +12,12 @@ const temporary=()=>fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(),'portab
 function run(args,options={}) {return new Promise((resolve,reject)=>{const child=spawn(process.execPath,args,{...options,windowsHide:true});let stdout='',stderr='';child.stdout.on('data',v=>stdout+=v);child.stderr.on('data',v=>stderr+=v);child.on('error',reject);child.on('close',status=>resolve({status,stdout,stderr}));});}
 function npm(args,cwd,env) {const r=spawnSync(process.platform==='win32'?'npm.cmd':'npm',args,{cwd,env,encoding:'utf8',timeout:60000,shell:process.platform==='win32'});assert.equal(r.status,0,r.stdout+r.stderr);return r;}
 
-test('first-release packed install, real npm update, same-version repair, local-edits refusal and recovery',async()=>{
-  // historical-mode: first standalone release has no archived-updater-entry.
-  // This test exercises the real current npm acquisition/activation boundary.
+test('archived-updater-entry 0.1.0, real npm update, same-version repair, local-edits refusal and recovery',async()=>{
+  // historical-mode: actual immutable published 0.1.0 copy-mode updater.
   const p=temporary(),candidate=path.join(p,'candidate-source');fs.mkdirSync(candidate);
   for(const f of ['package.json','capabilities.json','README.md','INSTALL.md','UPDATE.md','LICENSE','bin','lib','skills']) fs.cpSync(path.join(root,f),path.join(candidate,f),{recursive:true});
-  const next='0.1.99';
+  const parts=pkg.version.split('.').map(Number);
+  const next=[parts[0],parts[1],parts[2]+1].join('.');
   for(const f of ['package.json','capabilities.json','skills/portable-skill-creator/skill-manifest.json']) {const at=path.join(candidate,f),data=JSON.parse(fs.readFileSync(at));data.version=next;if(f==='package.json')delete data.scripts;fs.writeFileSync(at,JSON.stringify(data));}
   const config=path.join(p,'npmrc');fs.writeFileSync(config,'');
   const baseEnv={...process.env,npm_config_userconfig:config,npm_config_dry_run:'false',npm_config_json:'false',PORTABLE_SKILL_UPDATE_CHECK:'0'};
@@ -34,7 +34,14 @@ test('first-release packed install, real npm update, same-version repair, local-
   });
   await new Promise(r=>server.listen(0,'127.0.0.1',r));baseURL='http://127.0.0.1:'+server.address().port;
   const env={...baseEnv,PORTABLE_SKILL_UPDATE_CHECK:'1',PORTABLE_SKILL_REGISTRY_URL:baseURL,npm_config_registry:baseURL};
-  const o={agent:'unlisted-agent',target:path.join(p,'agent-skill')};install(o);
+  const archive=path.join(root,'test/fixtures/portable-skill-creator-0.1.0.tgz');
+  const expected=JSON.parse(fs.readFileSync(path.join(root,'test/fixtures/0.1.0.json')));
+  assert.equal('sha512-'+crypto.createHash('sha512').update(fs.readFileSync(archive)).digest('base64'),expected.integrity);
+  npm(['install','--prefix',path.join(p,'archived'),'--ignore-scripts','--no-audit','--no-fund',archive],p,baseEnv);
+  const oldEntry=path.join(p,'archived/node_modules/@petercjl/portable-skill-creator/bin/portable-skill-creator.mjs');
+  const o={agent:'unlisted-agent',target:path.join(p,'agent-skill')};
+  const initial=await run([oldEntry,'skill','install','--agent',o.agent,'--target',o.target,'--json'],{env:baseEnv});
+  assert.equal(initial.status,0,initial.stderr);assert.equal(JSON.parse(initial.stdout).version,'0.1.0');
   const entry=path.join(o.target,'.runtime/bin/portable-skill-creator.mjs');
   try {
     const result=await run([entry,'update','install','--agent',o.agent,'--target',o.target,'--state-dir',path.join(p,'state'),'--yes','--json'],{env});
@@ -49,6 +56,6 @@ test('first-release packed install, real npm update, same-version repair, local-
     const refused=await run([entry,'update','install','--agent',o.agent,'--target',o.target,'--state-dir',path.join(p,'state'),'--yes','--json'],{env});
     assert.notEqual(refused.status,0);assert.equal(JSON.parse(refused.stderr).error.code,'LOCAL_EDITS');assert.equal(registryCalls,calls);
     // Recovery snapshot identity is independent of activated candidate resources.
-    assert.equal(JSON.parse(fs.readFileSync(path.join(report.transaction,'before','skill-manifest.json'))).version,pkg.version);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(report.transaction,'before','skill-manifest.json'))).version,'0.1.0');
   } finally {await new Promise(r=>server.close(r));}
 });

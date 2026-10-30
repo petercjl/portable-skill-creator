@@ -86,7 +86,7 @@ Private source material may inform the design but must not become a hidden runti
 
 Choose the internalization mode explicitly:
 
-- **direct**: encode a small, stable method as executable contracts;
+- **direct**: encode a small, stable mechanical method as executable contracts; core domain judgment uses a compact separate strategy reference;
 - **knowledge-compiled**: compile an evolving body of judgment into a routed local mini Wiki;
 - **hybrid**: keep hard contracts in `SKILL.md` and soft domain judgment in the local Wiki.
 
@@ -122,6 +122,10 @@ When native tools differ across Agents, keep the portable core expressed in logi
 A capability declaration must identify its logical ID, required features, input fields, output fields, side effects, authorization boundary, and whether it is required. An adapter mapping must identify the platform implementation, implemented features, status, and test evidence when status is `tested`.
 
 Do not equate an Agent-native tool with a portable executable wrapper. A stable CLI may expose one cross-platform executable contract. An Agent-native generator, browser, or delegation function instead needs an instruction-level adapter that normalizes results to the declared output contract. Runtime execution must never edit its own adapter; unresolved mappings are completed only in an authorized port or update cycle.
+
+## 4.2 Observable execution and local reruns
+
+Use stable business node ids and target-owned run records. Record actual inputs, strategy identities, upstream attempt ids, output evidence, summaries and acceptance. Preserve historical attempts and snapshots; derive freshness from changed contracts, inputs, strategies, artifacts and dependencies. Flow edits reconnect contracts, and strategy edits preserve or migrate output interfaces. Enter `queries/design-node-observability.md` for the recording and recovery method; return to step 4, then validate real node outputs at step 7. Design discussion records and evaluation reports serve separate purposes from runtime evidence.
 
 ## 5. Resource Distribution
 

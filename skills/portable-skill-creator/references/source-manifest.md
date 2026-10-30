@@ -26,3 +26,7 @@ Critical gap: the target SealSeek/OpenClaw native capability catalog was not ins
 Recompile this layer when the governing knowledge source changes materially, the base creator changes its contract, the user changes the standard-answer or regression policy, the capability schema changes incompatibly, or verified target-platform evidence resolves or contradicts an adapter mapping.
 
 This shareable manifest intentionally records stable source identity and integrity rather than a private absolute source path.
+
+## Node observability extension (2026-10-30)
+
+Source class U: user-confirmed creation method and approved observability plan. Coverage: sufficient for file-based DAG runs, partial for external services requiring target-specific revision/idempotency adapters. Source class E is established by package behavioral tests with actual files; clean-context behavioral regression remains separate. Recompile when node contracts, evidence storage, dependency semantics or accepted strategy methods change. The standalone generation asset carries deterministic bookkeeping; business interpretation remains target-owned.

@@ -49,6 +49,8 @@ Understand the recurring user problem before discussing files:
 - observable success criteria and frequent failures;
 - permissions, costs, and stopping conditions.
 
+Accept natural-language requirements, existing materials and optional diagrams. User-provided node directions are useful strategy seeds; when absent, propose methods from the business objective.
+
 Design in two passes. First write the business main line from the user's perspective: accepted inputs, the work to perform in order, decision/hand-off points, and outputs. This pass specifies **what happens**, not the method for every judgment. Then, for each step that needs judgment, define **how to do it**: the strategy question, decision standard, evidence, and QA. Draw strategies from three explicit sources—Agent proposals for user review, relevant Wiki or other traceable enterprise knowledge, and methods supplied by the user. Record provenance and unresolved gaps; an Agent proposal is not a confirmed business rule. Read [Business flow and strategy sources](references/topics/business-flow-and-strategy-sources.md) when creating or substantially redesigning a business Skill, via the current knowledge route.
 
 Define:
@@ -86,10 +88,12 @@ For non-trivial Skills, make the topology explicit:
 Keep the three responsibilities distinct:
 
 1. control layer in `SKILL.md`;
-2. optional task mini Wiki in `references/`;
+2. core domain strategies in routed `references/`, scaled from a small strategy page to a task mini Wiki;
 3. development evaluation outside ordinary runtime.
 
 For every knowledge-dependent node, record its trigger, retrieval question, minimum route/pages, completion output, and return point. Also record what remains deferred. A global instruction to read all references or all topics at startup is a design error. When a route needs several files or the target Agent incurs high per-call latency, use one batched read or a small deterministic route loader; do not spend one model turn per file.
+
+Design a node run ledger for generated workflows: stable node identities, actual inputs/strategies, upstream attempt ids, output evidence, summaries, acceptance and history-preserving retries. Enter [design node observability](references/queries/design-node-observability.md) here with the question “How can this user inspect a conclusion and rerun only affected work?” Return with the recording contract, storage and validation cases. Use an existing target-owned execution surface where available; the [ledger generation asset](assets/node-ledger/ledger.py) is a standalone option for file workflows. Keep design records, runtime records and development evaluation distinct.
 
 Scripts, CLIs, MCPs, APIs, browsers, and native Agent tools are execution resources, not the third layer.
 
@@ -135,7 +139,8 @@ Run applicable gates separately:
 6. test every changed script with representative success and failure cases;
 7. validate dependencies, permissions, accounts, and paid-action boundaries;
 8. run a realistic main task when the Skill produces artifacts or state;
-9. inspect the real artifact against the output contract.
+9. inspect the real artifact against the output contract;
+10. exercise node traceability with actual files: successful completion, failed acceptance, input/strategy changes, missing outputs, independent-branch reuse, interrupted execution and a local rerun. Verify that old evidence survives and affected downstream results are marked stale.
 
 For knowledge-compiled/hybrid Skills, additionally audit the runtime read set: list the files loaded before the first expensive analysis call, verify that each belongs to the current node, and verify that later-node topics and maintenance files remain unloaded. Treat eager full-layer loading as a validation failure even when every file is valid individually.
 
@@ -186,6 +191,10 @@ Keep one canonical portable core. Extract native tool names into capability adap
 ### Missing Target Capability
 
 Do not invent a tool or silently reduce requirements. Return `CAPABILITY_UNAVAILABLE` or `FEATURE_UNSUPPORTED` with the logical capability, required features, expected input/output, target platform, and validation needed. During an authorized port/update cycle, add or repair only the adapter and return to Step 7.
+
+### Inspect Or Improve A Workflow Node
+
+Read [node debugging and reruns](references/topics/node-debugging-and-reruns.md) when diagnosing a target Skill's execution. Inspect its real ledger/artifacts, identify the earliest invalid node and plan affected descendants. Adjust the owning strategy, flow or tool within authorization; preserve historical attempts and return to step 7 for validation.
 
 ### Base Creator Changes
 
