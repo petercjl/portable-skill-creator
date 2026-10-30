@@ -30,13 +30,13 @@ try {
   o.stateDir=o['state-dir'];
   const manifest=JSON.parse(readFileSync(path.join(c.root,'capabilities.json')));
   let result;
-  if(cmd==='help'||o.help) result={...manifest,commands:manifest.commandContracts,guidance:'The current Agent resolves its exact Skill directory and passes --agent <valid-name> --target <absolute-directory>. See INSTALL.md and UPDATE.md.'};
+  if(cmd==='help'||o.help) result={...manifest,commands:manifest.commandContracts,options:manifest.commandContracts[cmd]?.options??{},guidance:'The current Agent resolves its exact Skill directory and passes --agent <valid-name> --target <absolute-directory>. See INSTALL.md and UPDATE.md.'};
   else if(cmd==='install-notice') result={ok:true,partial:true,message:'CLI bootstrap installed. The current Agent must read INSTALL.md, resolve skill source, synchronize its own explicit Skill target and verify discovery. npm success alone is incomplete.'};
   else if(cmd==='version') result={ok:true,package:c.pkg.name,version:c.pkg.version};
   else if(cmd==='capabilities') result=manifest;
   else if(cmd==='skill source') {
     if(o.name&&o.name!==c.name) c.fail('SKILL_NOT_FOUND','Unknown logical Skill');
-    result={ok:true,name:c.name,package:c.pkg.name,version:c.pkg.version,path:c.source,complete:true,skills:[{name:c.name,package:c.pkg.name,version:c.pkg.version,path:c.source}]};
+    result={...manifest,ok:true,name:c.name,package:c.pkg.name,version:c.pkg.version,path:c.source,complete:true,skills:[{ok:true,name:c.name,package:c.pkg.name,version:c.pkg.version,path:c.source}]};
   } else if(cmd==='skill status') result=c.status(o);
   else if(cmd==='skill install'||cmd==='skill update') result=c.install(o);
   else if(cmd==='doctor') result=c.doctor(o);
