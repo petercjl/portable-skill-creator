@@ -260,12 +260,12 @@ def main():
             result = operate(run, args.action, args.node, payload, args.attempt)
         finally:
             lock.rmdir()
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(json.dumps(result, ensure_ascii=True, indent=2))
 
 
 if __name__ == "__main__":
     try:
         main()
     except (ValueError, OSError, KeyError, TypeError) as error:
-        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=True), file=sys.stderr)
         sys.exit(1)

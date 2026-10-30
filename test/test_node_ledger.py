@@ -47,7 +47,8 @@ class LedgerTest(unittest.TestCase):
             args += ["--data", str(p)]
         if attempt:
             args += ["--attempt", attempt]
-        result = subprocess.run(args + (extra or []), capture_output=True, text=True, encoding="utf-8")
+        result = subprocess.run(args + (extra or []), capture_output=True, text=True, encoding="utf-8",
+                                env={**os.environ, "PYTHONIOENCODING": "ascii"})
         if ok:
             self.assertEqual(result.returncode, 0, result.stderr)
             return json.loads(result.stdout)
