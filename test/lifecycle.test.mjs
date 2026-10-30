@@ -85,3 +85,13 @@ test('locked-directory rename uses backed-up in-place repair and preserves UI me
   fs.renameSync=(from,to)=>{if(from===o.target)throw Object.assign(new Error('locked-directory rename'),{code:'EBUSY'});return rename(from,to);};
   try {const r=install(o);assert.equal(r.current,true);assert.ok(fs.existsSync(path.join(r.backup,'skill','SKILL.md')));}finally {fs.renameSync=rename;}
 });
+test('partial-failure state survives missing target and explicit recovery preserves original snapshot',()=>{
+  const o={agent:'generic',target:path.join(tmp(),'skill')};install(o);fs.unlinkSync(path.join(o.target,'references/index.md'));
+  const rename=fs.renameSync;
+  fs.renameSync=(from,to)=>{if(from.includes('.stage-')&&to===o.target)throw Object.assign(new Error('injected activation failure'),{code:'EIO'});return rename(from,to);};
+  let backup;
+  try {assert.throws(()=>install(o),e=>{backup=e.details.backup;return e.code==='EIO';});}finally {fs.renameSync=rename;}
+  const pending=status(o);assert.equal(pending.installed,false);assert.equal(pending.recovery.required,true);assert.equal(pending.recovery.operation.phase,'failed-sync');
+  assert.ok(fs.existsSync(path.join(backup,'skill','SKILL.md')));
+  const recovered=install(o);assert.equal(recovered.current,true);assert.equal(recovered.backup,backup);
+});
