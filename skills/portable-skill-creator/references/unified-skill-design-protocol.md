@@ -1,6 +1,6 @@
 # Unified Skill Design Protocol
 
-Protocol version: `2026-09-18-v5`
+Protocol version: `2026-10-30-v6`
 
 Use this protocol as the platform-neutral design contract for creating, updating, reviewing, testing, and porting Agent Skills. Platform creators may add adapters, but must not replace or fork these core principles.
 
@@ -126,6 +126,10 @@ Do not equate an Agent-native tool with a portable executable wrapper. A stable 
 ## 4.2 Observable execution and local reruns
 
 Use stable business node ids and target-owned run records. Record actual inputs, strategy identities, upstream attempt ids, output evidence, summaries and acceptance. Preserve historical attempts and snapshots; derive freshness from changed contracts, inputs, strategies, artifacts and dependencies. Flow edits reconnect contracts, and strategy edits preserve or migrate output interfaces. Enter `queries/design-node-observability.md` for the recording and recovery method; return to step 4, then validate real node outputs at step 7. Design discussion records and evaluation reports serve separate purposes from runtime evidence.
+
+### Business-flow ledger view
+
+Present user-facing run ledgers in the user's business flowchart, preserving familiar node names, sequence, branches and grouping. Map business nodes explicitly to underlying execution records or result fields; place jointly produced dimensions within the same business node. Natural-language flow definitions are sufficient. Show status/freshness, concise results and artifact access on each node; progressively reveal strategies, source evidence, acceptance and history, with attempt ids/hashes/tool details in expandable technical evidence. Mark local updates and reused results on this same business flow. Derive completion and reuse from the required mapped records and actual evidence; clearly identify snapshots and keep viewing read-only. Validate node/edge fidelity, evidence access, failure/staleness display, historical traceability and unaffected-result preservation. See `topics/node-run-ledger.md` for the full projection contract.
 
 ## 5. Resource Distribution
 

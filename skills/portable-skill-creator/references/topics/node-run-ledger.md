@@ -8,6 +8,18 @@ The Creator defines the contract and provides generation assets. Each target Ski
 
 Keep design decisions, actual run evidence, and development evaluation separate. Run records describe observable inputs, decisions/results, files and status; private model reasoning is outside this contract. Keep secrets out of summaries and parameters. Evidence snapshots can contain business-sensitive material: use the project's authorized private storage and retention policy; public packages exclude run data.
 
+## Business-flow presentation contract
+
+Every user-facing run ledger follows the user's business flowchart. Retain the user's familiar node names, sequence, branches and grouping. A business flow described in natural language is sufficient; a mind map or diagram file is optional. A simple task may have one business node. Keep an explicit mapping from stable business node ids to execution records, output sections or result fields. Several implementation steps may belong to one business node; several result dimensions may be produced by one joint operation. Present those dimensions within that business node, preserving actual concurrency and hand-offs.
+
+At each business node show the current status/freshness, a short result and access to its inputs/outputs. Selecting or expanding it reveals actual strategies, source evidence, acceptance and historical results. Put attempt ids, hashes, tool calls and implementation-node graphs in expandable technical evidence. This preserves the user's business navigation while retaining full audit detail. The target Skill owns its presentation and mapping; the file-ledger asset supplies records and does not generate a user interface by itself.
+
+When a strategy changes, highlight the affected business node or result dimension, the downstream business outputs regenerated, and the unaffected results retained. Derive reuse claims from actual attempt/field identities and content evidence. Preserve historical business views or reconstruct them from exact historical records. Do not label an old result as using a new strategy.
+
+Derive business status from all required mapped execution records, their freshness, acceptance and output evidence. Surface pending, running, failed, blocked, missing, stale and unverified conditions; a completed low-level action alone does not establish business completion. Keep terminal state and freshness distinguishable. Label whether the view is live or an explicitly dated/versioned snapshot. Viewing, expanding or switching history is read-only and does not trigger reruns or external actions.
+
+Validate the projection with a real run: compare the shown nodes/edges/groupings with the agreed business flow; open each node's results, inputs/outputs and evidence; change a strategy and inspect affected/reused markers; confirm that failures or stale results cannot appear complete; verify historical links and that inspection leaves records unchanged. Check the rendered presentation when the host supports it, and report visual inspection separately from static/link/interaction checks.
+
 ## Node definition
 
 Use stable ids, readable titles, upstream node ids, accepted input references, strategy references, output keys and explicit acceptance check names. The file template uses `{schemaVersion:1,nodes:[{id,title,dependsOn,inputs,strategies,outputKeys,checks}]}`. Paths are workspace-relative. Its validator rejects duplicate ids, missing dependencies and cycles. `outputKeys` and `checks` are nonempty. Strategy pages carry evolving judgment; workflow definitions carry execution contracts. Small flows may have one strategy page and a single node.

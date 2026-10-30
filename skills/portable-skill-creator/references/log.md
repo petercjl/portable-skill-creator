@@ -2,6 +2,9 @@
 
 ## 2026-10-30
 
+- Required user-facing ledgers to follow the user’s familiar business flowchart, with explicit execution/result mappings, progressive evidence disclosure, truthful status and business-level update/reuse highlights.
+
+
 - Added user-confirmed flow/strategy separation for business judgment, optional input forms and strategy seeds.
 - Added business-node execution ledgers, evidence snapshots, dependency-based freshness, historical traceability and partial reruns.
 - Added an independently usable file-ledger generation asset and routed its design and debugging methods.

@@ -30,3 +30,7 @@ This shareable manifest intentionally records stable source identity and integri
 ## Node observability extension (2026-10-30)
 
 Source class U: user-confirmed creation method and approved observability plan. Coverage: sufficient for file-based DAG runs, partial for external services requiring target-specific revision/idempotency adapters. Source class E is established by package behavioral tests with actual files; clean-context behavioral regression remains separate. Recompile when node contracts, evidence storage, dependency semantics or accepted strategy methods change. The standalone generation asset carries deterministic bookkeeping; business interpretation remains target-owned.
+
+## Business-flow ledger presentation (2026-10-30)
+
+Source class U: user-confirmed principle that run ledgers use the user’s familiar business flowchart. Source class A: explicit business-to-execution mapping, progressive disclosure and projection QA derived from that principle. Coverage: sufficient for the presentation contract, partial for host-specific rendering; each target owns its actual UI and evidence. Source class E: a local application demonstration exercised business-node/result-dimension navigation and retained underlying run/artifact hashes; visual and clean-context evidence remain separately reported. Recompile when accepted business navigation, state projection or evidence-display semantics change.
