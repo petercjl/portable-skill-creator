@@ -10,4 +10,12 @@ Main-context fixture: synthetic reviews identify cleaning convenience and limite
 
 Runtime read set: base creator; creation/business-flow route and relevant existing protocols; the user-approved observability specification; package/release capability contracts. Regression-specific strategy pages were deferred. Ordinary generated execution reads only the current node's strategy references and records their actual hashes. Design records, run records and development evaluation remain separate.
 
-No isolated Agent regression was requested or run. Native SealSeek bindings remain unresolved. Only the selected local Codex installation is authorized for synchronization; OS CI and generic package tests do not imply every native host was tested. Public version/tag verification and local installation evidence are recorded after release.
+No isolated Agent regression was requested or run. Native SealSeek bindings remain unresolved. Only the selected local Codex installation is authorized for synchronization; OS CI and generic package tests do not imply every native host was tested.
+
+## Release and installation evidence
+
+Published `@petercjl/portable-skill-creator@0.2.0` under `latest` through [Trusted Publishing](https://github.com/petercjl/portable-skill-creator/actions/runs/41006135872). Windows, macOS and Ubuntu QA passed; all 12 test groups passed, including six ledger behavioral cases and the real archived 0.1.0 updater. JSON output also passes with an ASCII console encoding. Release metadata and nested Skill versions agree.
+
+The exact public registry tarball was downloaded and its SHA-512 integrity verified; all 48 packed files match release source. The generic audit reports three marker-discovery warnings for historical updater coverage; actual archived-entry, same-version repair, recovery and edit-protection execution passed through the test suite and three-platform CI.
+
+Only local Codex was synchronized via its installed 0.1.0 updater to public 0.2.0. The global bootstrap CLI and Codex-owned runtime both report 0.2.0. Managed receipt hashes match, with no missing files or local edits; old installation and transaction snapshots remain available. Read-only maintenance verification changed no installed files. This Codex conversation loaded the installed Skill and executed its ledger asset against the retained synthetic run; the complete historical evidence chain verified successfully. A fresh-conversation regression was not run.
