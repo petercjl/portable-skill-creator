@@ -2,7 +2,7 @@
   "ok": true,
   "schemaVersion": 1,
   "package": "@petercjl/portable-skill-creator",
-  "version": "0.1.0",
+  "version": "0.1.0-dev.0",
   "skills": [
     "portable-skill-creator"
   ],
