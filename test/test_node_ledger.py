@@ -136,11 +136,13 @@ class LedgerTest(unittest.TestCase):
         self.assertTrue((self.run / ".lock").exists())
         (self.run / ".lock").rmdir()
         self.complete("needs")
+        self.complete("report")
         details = self.call("inspect", "needs")["trace"]
         obj = self.run / details["execution"]["outputs"]["result"]["snapshot"]
         obj.write_text("corrupted", encoding="utf-8")
         self.assertFalse(self.call("inspect")["nodes"]["needs"]["current"])
         self.assertFalse(self.call("inspect", "needs")["trace"]["evidenceVerified"])
+        self.assertFalse(self.call("inspect", "report")["trace"]["evidenceVerified"])
 
     def test_generated_template_runs_independently(self):
         copied = self.root / "generated-skill/scripts/ledger.py"

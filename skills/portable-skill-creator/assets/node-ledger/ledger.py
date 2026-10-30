@@ -153,8 +153,10 @@ def trace(state, node, attempt=None, visited=None, run=None):
             require(digest((run / item["snapshot"]).read_bytes()) == item["sha256"], "corrupt")
         except (ValueError, OSError):
             issues.append(item["snapshot"])
-    return {"node": node, "execution": a, "evidenceVerified": not issues, "evidenceIssues": issues,
-            "upstream": [trace(state, dep, aid, visited, run) for dep, aid in a["dependencies"].items()]}
+    upstream = [trace(state, dep, aid, visited, run) for dep, aid in a["dependencies"].items()]
+    return {"node": node, "execution": a,
+            "evidenceVerified": not issues and all(item["evidenceVerified"] for item in upstream),
+            "evidenceIssues": issues, "upstream": upstream}
 
 
 def operate(run, action, node=None, payload=None, attempt=None):
