@@ -1,6 +1,6 @@
 {
   "name": "@petercjl/portable-skill-creator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Portable Skill creation methods, routed knowledge and deterministic validators for capability-compatible Agents",
   "type": "module",
   "license": "MIT",
